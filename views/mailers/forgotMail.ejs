@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+#link{
+    display: flex;
+    justify-content: center;
+}
+#link a{
+    display: block;
+    width:100px;
+    height:26px;
+    background-color: rgb(190, 118, 238);
+    color:white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+}
+#link a:hover{
+    background-color: rgb(62, 115, 222);
+    color:white;
+}
+</style>
+</head>
+<body>
+     <h2>Press on <b>click me</b> button to reset your password and you can use this for only one time</h2>
+    <div id="link"><a href="http://localhost:8000/resetPassword/`<%= forgotPass.token %>`" id="reset">click me</a></div>
+   
+</body>
+</html>

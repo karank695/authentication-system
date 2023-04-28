@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="/css/genPass.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+    <div id="form-container">
+        <form method="post" action="/password-Generated/<%= token %>" id="genPassForm">
+            <table>
+                <tr>
+                    <td><label>New Password:</label> </td>
+                    <td class="box"> <input type="password" id="password" name="password"><br></td>
+                </tr>
+                <tr>
+                  <td><label>Confirm Password:</label> </td>
+                  <td class="box"><input type="password" id="ConfirmPssword" name="confirmPassword"><br></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="submit" id="submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+     <script src="/js/forgotMail.js"></script>
+</body>
+</html>

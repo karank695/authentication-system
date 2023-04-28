@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>Code Ninja</h1>
+            <div id="quote-content">
+                <p>It's code ninja, helps you to become a good developer </p>
+            </div>
+        </div>
+        <div class="login-form">
+            <form method="post" action="/createSession">
+                <input type="text" name="email" class="email" placeholder="Enter email">
+                <input type="password" name="password" id="password" placeholder="Password">
+                <div class="g-recaptcha" data-sitekey="6Lf9S8YlAAAAAK4ZA4_TlDtlFLh7n3pQrYhn79hW"></div>
+                <input type="submit" id="login-btn" value="Log in">
+                <div id="google-oath"><a href="/auth/google">Login with</a><img src="/images/google.png"></div>
+                <div>
+                    <a href="/forgotPassword">
+                        <p>Forgot password?</p>
+                    </a>
+                </div>
+
+                <hr>
+                <a><button id="new-account-btn">Create new account</button></a>
+            </form>
+
+            <p><b>create a page&nbsp;</b>for a celebrity, brand or business</p>
+        </div>
+    </div>
+    <div class="signUp-wrapper">
+        <div class="new-account-form">
+            <div class="heading">
+                <div class="left">
+                    <h1>Sign Up</h1>
+                    <p>It's quick and easy</p>
+                </div>
+                <span id="cancel">x</span>
+            </div>
+            <hr>
+            <form method="post" action="/createUser">
+                <input type="text" name="fname" id="fname" placeholder="First name">
+                <input type="text" name="lname" id="lname" placeholder="Last name"><br>
+                <input type="text" name="email" class="email" placeholder="Enter email">
+                <input type="text" name="phone" class="phone" placeholder="Enter phone number">
+                <br>
+                <input type="password" name="password" id="pass" placeholder="Password">
+                <br>
+                <input type="password" name="confirmPassword" id="confirmPass" placeholder="Confirm password">
+                <br>
+                <label>Date of birth<span>?</span></label><br>
+                <input type="date" name="date" id="date">
+                <br><br>
+                <label>Gender<span>?</span></label><br>
+                <div id="gen">
+                    <label class="gen">Female<input type="radio" name="gender" value="female"></label>
+                    <label class="gen">Male<input type="radio" name="gender" value="male"></label>
+                    <label class="gen">Custom<input type="radio" name="gender" value="custom"></label>
+                </div>
+                <input type="submit" value="Sign Up" id="signup">
+
+            </form>
+
+        </div>
+    </div>
+    <script src="/js/home.js"></script>
+
+</body>
+
+</html>
