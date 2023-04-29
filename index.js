@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
-const PORT = process.env.PORT;
+const env = require('./config/environment');
+const PORT = env.PORT;
 const path = require('path');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
@@ -41,6 +41,7 @@ app.use(customMiddleware.setFlash);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+app.use(passport.setAuthenticatedProfile);
 app.use('/', require('./routers/routers'));
 app.listen(8000,() => {
     console.log(`I am listening at port ${PORT}`);

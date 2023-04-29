@@ -19,5 +19,6 @@ router.get('/login', homeController.home);
 router.use('/', require('../routers/forgotPass'));
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), homeController.about);
+router.post('/captchaValidation', homeController.captchaValidation);
 
 module.exports = router;

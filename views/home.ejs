@@ -8,7 +8,8 @@
     <title>Home</title>
     <link rel="stylesheet" href="/css/home.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer>
+        </script>
 </head>
 
 <body>
@@ -20,10 +21,10 @@
             </div>
         </div>
         <div class="login-form">
-            <form method="post" action="/createSession">
+            <form method="post" action="/captchaValidation">
                 <input type="text" name="email" class="email" placeholder="Enter email">
                 <input type="password" name="password" id="password" placeholder="Password">
-                <div class="g-recaptcha" data-sitekey="6Lf9S8YlAAAAAK4ZA4_TlDtlFLh7n3pQrYhn79hW"></div>
+                <div class="g-recaptcha" data-sitekey="6Lc7zsglAAAAAArex18_7Vjs_CqXDe9R2MZzftU0"></div>
                 <input type="submit" id="login-btn" value="Log in">
                 <div id="google-oath"><a href="/auth/google">Login with</a><img src="/images/google.png"></div>
                 <div>
