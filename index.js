@@ -16,6 +16,7 @@ const JWTStrategy = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-strategy');
 const CryptoJS = require('crypto-js');
 const fetch = require('isomorphic-fetch');
+const MongoStore = require('connect-mongo');
 
 //setting path for static resources
 app.use(express.static('assets'));
@@ -34,7 +35,10 @@ app.use(session({
     cookie: {
         secure: false,
         maxAge: (60 * 100 * 1000)
-    }
+    },
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGO_URI,
+        })
 }));
 app.use(flash());
 app.use(customMiddleware.setFlash);
