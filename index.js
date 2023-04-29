@@ -49,6 +49,6 @@ app.use(passport.setAuthenticatedProfile);
 app.use('/', require('./routers/routers'));
 
 // console.log(app.get('env'));
-app.listen(8000,() => {
+app.listen(process.env.PORT,() => {
     console.log(`I am listening at port ${PORT}`);
 })
