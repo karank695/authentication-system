@@ -38,6 +38,7 @@ app.use(session({
     },
         store: MongoStore.create({
             mongoUrl: process.env.MONGO_URI,
+            touchAfter: 24 * 3600
         })
 }));
 app.use(flash());
