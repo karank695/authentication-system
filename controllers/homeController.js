@@ -56,7 +56,7 @@ module.exports.createUser = (req, res) => {
 module.exports.createSession = (req, res) => {
     
     const response_key = req.body['g-recaptcha-response'];
-    const secret_key = "6Lf9S8YlAAAAAMqF4zFOft-1nZU3BEEswboceX12";
+    const secret_key = CAPTCHA_SECRET_KEY;
       const url =
         `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${response_key}`;
     fetch(url, {

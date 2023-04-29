@@ -10,11 +10,14 @@ passport.use(new LocalStrategy({
         User.findOne({
             email: email
         }).then((user) => {
-            let bytes = CryptoJS.AES.decrypt(user.password, 'karan');
-            let decPassword = bytes.toString(CryptoJS.enc.Utf8);
-            if (!user || decPassword != password) {
+            if (!user) {
                 return done(null, false);
             }
+            let bytes = CryptoJS.AES.decrypt(user.password, process.env.CUSTOM_SECRET_KEY);
+            let decPassword = bytes.toString(CryptoJS.enc.Utf8);
+            if (decPassword != password) {
+                return done(null, false);
+           }
             return done(null, user);
         }).catch((err) => {
             console.log(err);
