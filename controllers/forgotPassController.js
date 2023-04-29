@@ -4,20 +4,19 @@ const forgotPassMailer = require('../mailers/forgotPassMailer');
 const CryptoJS = require('crypto-js');
 const User = require('../models/users');
 const jwt = require('jsonwebtoken');
-const env = require('../config/environment');
+require('dotenv').config({path:__dirname+'../.env'});
 module.exports.forgot = (req, res) => {
     return res.render('forgotPass');
 }
 module.exports.createToken = (req, res) => {
     let email = req.body.email;
-    let encToken = jwt.sign(email, env.CUSTOM_SECRET_KEY)
-    console.log(encToken);
+    let encToken = jwt.sign(email, process.env.CUSTOM_SECRET_KEY)
+    console.log('encToken ',encToken);
     ForgotPass.create({
         email: req.body.email,
         token: encToken,
         expire:false
     }).then((forgotPass) => {
-    console.log(forgotPass);
         forgotPassMailer.newMail(forgotPass);
         req.flash('info', 'Reset email has been sent successfully');
         return res.redirect('/');
@@ -28,7 +27,6 @@ module.exports.createToken = (req, res) => {
     
 }
 module.exports.reset = (req, res) => {
-    console.log(req.params.token);
     ForgotPass.findOne({ token: req.params.token }).then((data) => {
         if (data) {
             return res.render('genPass',{token:req.params.token});
@@ -49,14 +47,16 @@ module.exports.generatePass = (req, res) => {
         return res.redirect('back');
     }
     let newPassword = req.body.password;
-    let encPassword = CryptoJS.AES.encrypt(newPassword, env.CUSTOM_SECRET_KEY).toString();
+    let encPassword = CryptoJS.AES.encrypt(newPassword, process.env.CUSTOM_SECRET_KEY).toString();
     ForgotPass.findOne({ token: req.params.token }).then((data) => {
         let email = data.email;
         User.findOneAndUpdate({ email: email }, { $set: { password: encPassword } })
             .then((data) => {
+                console.log('req ',req.params.token);
                     ForgotPass.findOneAndDelete({
                         token: req.params.token
-                    }).then(() => {
+                    }).then((data) => {
+                        console.log(data);
                         console.log('token deleted');
                     }).catch((err) => {
                         console.log(err);

@@ -1,6 +1,8 @@
 const User = require('../models/users');
 const CryptoJS = require('crypto-js');
-const env = require('../config/environment');
+require('dotenv').config({
+    path: __dirname + '../.env'
+});
 //function for rendering home page
 module.exports.home = (req, res) => {
     res.render('home');
@@ -30,7 +32,7 @@ module.exports.createUser = (req, res) => {
                     message: 'existed'
                 });
             } else {
-                let encPassword = CryptoJS.AES.encrypt(req.body.password, env.CUSTOM_SECRET_KEY).toString();
+                let encPassword = CryptoJS.AES.encrypt(req.body.password, process.env.CUSTOM_SECRET_KEY).toString();
                 User.create({
                     name: req.body.fname + " " + req.body.lname,
                     email: req.body.email,
@@ -59,7 +61,7 @@ module.exports.createSession = (req, res) => {
 }
 module.exports.captchaValidation = (req, res) => {
         const response_key = req.body['g-recaptcha-response'];
-        const secret_key = env.CAPTCHA_SECRET_KEY;
+        const secret_key = process.env.CAPTCHA_SECRET_KEY;
         const url =
             `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${response_key}`;
         fetch(url, {
@@ -99,14 +101,14 @@ module.exports.change = (req, res) => {
         })
         .then((data) => {
             if (data) {
-                let bytes = CryptoJS.AES.decrypt(data.password, env.CUSTOM_SECRET_KEY);
+                let bytes = CryptoJS.AES.decrypt(data.password, process.env.CUSTOM_SECRET_KEY);
                 let decPassword = bytes.toString(CryptoJS.enc.Utf8);
                 console.log('data.password', data.password);
                 if (req.body.oldPassword != decPassword) {
                     req.flash('error', 'you have entered wrong password')
                     return res.redirect('back');
                 }
-                let encPassword = CryptoJS.AES.encrypt(req.body.newPassword, env.CUSTOM_SECRET_KEY).toString();
+                let encPassword = CryptoJS.AES.encrypt(req.body.newPassword, process.env.CUSTOM_SECRET_KEY).toString();
                 User.updateOne({
                     $set: {
                         password: encPassword

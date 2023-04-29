@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({path:'../.env'});
 async function main() {
-    mongoose.connect("mongodb://localhost/authentication_db");
-    // mongoose.connect(process.env.MONGO_URI);
+    mongoose.connect(process.env.MONGO_URI);
 }
 main().then(() => {
     console.log('connected successfully');
