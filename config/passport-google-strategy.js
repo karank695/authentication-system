@@ -16,8 +16,16 @@ passport.use(new googleStrategy({
         if (user) {
             return done(null, user);
         } else {
-            console.log('not a registered user');
-            return done(null, false);
+            User.create({
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            password: CryptoJS.AES.encrypt(req.body.password, process.env.CUSTOM_SECRET_KEY).toString()
+            }).then((data) => {
+                console.log(data);
+                return done(null, user);
+            }).catch((err) => {
+                console.log(err);
+            })
         }
     }).catch((err) => {
         console.log('error in creating user google-strategy', err);
