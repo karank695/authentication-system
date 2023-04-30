@@ -3,6 +3,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     overflow: hidden;
+    overflow-x: hidden;
 }
 
 .header {
@@ -43,6 +44,11 @@ body {
 #nav ul li {
     display: inline-block;
     padding: 10px;
+}
+@media (max-width:500px){
+   #nav ul li{
+    font-size:10px;
+   } 
 }
 
 #nav ul li a {
