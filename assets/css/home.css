@@ -356,5 +356,6 @@ cursor:pointer;
 color:rgb(232, 74, 227);
 }
 .g-recaptcha {
-    margin-left: 50px;
+margin:0 auto 0 auto;
+
 }
