@@ -1,6 +1,16 @@
-<h1>Authentication-System</h1><br>
-This app contains the authentication using passport local and google o-auth strategy.First you have to register on clicking <b>create account button</b> on home page and then you can login by correct credentials <br>
-If you have registered with google email id then you can login using only your email by gmail.
-In case if you forgot your mail, then there is forgot password button , after clicking on this button a pop will appear. 
-You have to enter your correct email and you will receive a email for creating your new password.
+# Authentication System
+The Authentication System app provides a secure user registration and login process. Users can register and login using their chosen credentials or conveniently authenticate using Google. The app incorporates Google reCAPTCHA to ensure bot protection and validate user interactions. In case of a forgotten password, users can request a password reset via email. The app offers a streamlined and user-friendly experience for authentication and account management.
+___
+
+```
+How to use
+```
+
+* Firstly user should be registered with theire email id.
+* After registeration, he can login using correct credentials.
+* One can login through Google Authentication.
+* Once forgot password, one's can get reset email by clicking on forget password
+```
+Registration page view
+```
 
